@@ -8,30 +8,17 @@ Take me to the [slides](https://talks.timebertt.dev/controller-sharding-lightnin
 
 This is a lightning talk by [@timebertt](https://github.com/timebertt) at [Cloud Native Rejekts 2023](https://cloud-native.rejekts.io/) in Amsterdam ([event schedule](https://cfp.cloud-native.rejekts.io/cloud-native-rejekts-eu-amsterdam-2023/schedule/)).
 
-### TL;DR
+You can find the full project belonging to this talk here: [kubernetes-controller-sharding](https://github.com/timebertt/kubernetes-controller-sharding).
 
-Distribute reconciliation of Kubernetes objects across multiple controller instances.
-Remove the limitation to have only one active replica (leader) per controller.
+### Abstract
 
-### Motivation
+Kubernetes controllers use a leader election mechanism to determine a single active instance out of multiple controller replicas to prevent uncoordinated and conflicting actions.
+Only the current leader performs reconciliations, other instances are on standby.
+Reconciliations cannot be distributed among multiple controller instances, hence Kubernetes controllers cannot be scaled horizontally.
+But how are your operators supposed to handle thousands of API objects?
 
-Typically, [Kubernetes controllers](https://kubernetes.io/docs/concepts/architecture/controller/) use a leader election mechanism to determine a *single* active controller instance (leader).
-When deploying multiple instances of the same controller, there will only be one active instance at any given time, other instances will be on standby.
-This is done to prevent controllers from performing uncoordinated and conflicting actions (reconciliations).
-
-If the current leader goes down and loses leadership (e.g. network failure, rolling update) another instance takes over leadership and becomes the active instance.
-Such a setup can be described as an "active-passive HA setup". It minimizes "controller downtime" and facilitates fast failovers.
-However, it cannot be considered as "horizontal scaling" as work is not distributed among multiple instances.
-
-This restriction imposes scalability limitations for Kubernetes controllers.
-I.e., the rate of reconciliations, amount of objects, etc. is limited by the machine size that the active controller runs on and the network bandwidth it can use.
-In contrast to usual stateless applications, one cannot increase the throughput of the system by adding more instances (scaling horizontally) but only by using bigger instances (scaling vertically).
-
-This study project presents a design that allows distributing reconciliation of Kubernetes objects across multiple controller instances.
-It applies proven sharding mechanisms used in distributed databases to Kubernetes controllers to overcome the restriction of having only one active replica per controller.
-The sharding design is implemented in a generic way in my [fork](https://github.com/timebertt/controller-runtime/tree/sharding) of the Kubernetes [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) project.
-The [webhosting-operator](#webhosting-operator) is implemented as an example operator that uses the sharding implementation for demonstration and evaluation.
-These are the first steps toward horizontally scalable Kubernetes controllers.
+As large-scale cluster and operator deployments are getting more widespread, there is an unanswered ask to overcome this scalability limitation.
+This talk takes you on a journey towards horizontally scalable Kubernetes controllers by introducing a design for Kubernetes controller sharding.
 
 ## Presenting and Editing the Slides
 

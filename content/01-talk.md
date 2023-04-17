@@ -2,11 +2,19 @@
 
 Kubernetes Controllers don't scale horizontally.
 
+notes:
+
+- large-scale controller deployments more widespread
+
 ---
 
 ## The Idea
 
 Apply sharding patterns from distributed databases.
+
+notes:
+
+- proven since years
 
 ---
 
