@@ -1,6 +1,6 @@
 # Towards Horizontally Scalable Kubernetes Controllers (Lightning Talk)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/<TODO>/deploy-status)](https://app.netlify.com/sites/talk-controller-sharding-lightning/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e06fa269-6329-42d3-9f49-9356ee0cc204/deploy-status)](https://app.netlify.com/sites/talk-controller-sharding-lightning/deploys)
 
 Take me to the [slides](https://talks.timebertt.dev/controller-sharding-lightning/)!
 
