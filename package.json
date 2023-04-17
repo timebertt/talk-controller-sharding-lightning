@@ -1,0 +1,35 @@
+{
+  "name": "talk-controller-sharding-lightning",
+  "version": "0.1.0",
+  "description": "Towards Horizontally Scalable Kubernetes Controllers",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack build",
+    "start": "webpack serve --open",
+    "serve": "http-server ./dist -o",
+    "clean": "rm -rf ./dist",
+    "checksum-patches": "c=$(find patches -type f -exec sha256sum {} \\; | sort | sha256sum | awk '{print $1}'); npm pkg set patches-checksum=$c",
+    "postinstall": "patch-package"
+  },
+  "patches-checksum": "70bee338889bfcf306fb585a391a40379fa713f1e7ce5f352a46f4cb845ac009",
+  "author": "Tim Ebert",
+  "dependencies": {
+    "qrcode": "^1.5.1",
+    "reveal.js": "^4.5.0"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "highlight.js": "^11.7.0",
+    "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.1",
+    "loader-utils": "^3.2.1",
+    "mini-css-extract-plugin": "^2.7.2",
+    "patch-package": "^6.5.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.12.0"
+  }
+}
